@@ -1,0 +1,25 @@
+name: Metrics
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - uses: lowlighter/metrics@latest
+      with:
+        user: sushiswap
+        filename: profile/metrics.svg
+        token: ${{ secrets.GITHUB_TOKEN }}
+        base: header, activity, community, repositories, metadata
+        plugin_activity: no
+        plugin_followup: yes
+        plugin_followup_sections: repositories
+        plugin_habits: yes
+        plugin_habits_facts: yes
+        plugin_habits_charts: no
